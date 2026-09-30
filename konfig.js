@@ -31,13 +31,13 @@ window.KONFIG = {
 
   // Platební odkazy ze Stripe (Payment Links). Prázdné = tlačítko řekne, že odkaz chybí.
   STRIPE: {
-    "2x_mesic":   "",
-    "2x_kvartal": "",
-    "3x_mesic":   "",
-    "3x_kvartal": "",
-    "5x_mesic":   "",
-    "5x_kvartal": "",
-    "zakladni":   ""
+        "2x_mesic":   "https://buy.stripe.com/4gM7sLgghgr83Mp7Ao7ok05",
+    "2x_kvartal": "https://buy.stripe.com/14AdR93tv8YG5Ux2g47ok06",
+    "3x_mesic":   "https://buy.stripe.com/5kQdR9c018YG1EhaMA7ok03",
+    "3x_kvartal": "https://buy.stripe.com/fZu00jd45gr82Il4oc7ok04",
+    "5x_mesic":   "https://buy.stripe.com/14AdR9e890sa2Il8Es7ok01",
+    "5x_kvartal": "https://buy.stripe.com/4gM8wP8NPfn40AdaMA7ok02",
+    "zakladni":   "https://buy.stripe.com/28EcN52prb6O0Ad2g47ok07"
   },
 
   // Platební odkazy pro jednotlivé kanály. Prázdné = použije se standardní odkaz ze STRIPE výš.
