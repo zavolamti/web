@@ -521,7 +521,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   //    Dokud clovek neklikne "Souhlasim", nenacte se z Mety nic, ani skript.
   //    Volba se drzi v localStorage (zavolamti_cookies = ano / ne) a zmenit ji jde
   //    odkazem "Nastaveni cookies" v paticce. Bez pixelu se lista ani odkaz neukazou.
-  //    Udalosti: ViewContent (reklama, samouci), Lead (zkouska = nechal e-mail),
+  //    Udalosti: ViewContent (reklama, samouci), Lead (zkouska = nechal e-mail; ne s ?z=mail),
   //    CompleteRegistration (dekuji-kontakt = objednal hovor), Purchase s castkou (dekuji).
   var CK = "zavolamti_cookies";
   var mamePixel = !!(ostre && K.META_PIXEL_ID);
@@ -535,6 +535,14 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       fbq('init', K.META_PIXEL_ID); fbq('track', 'PageView');
       var udalost = document.body.getAttribute("data-udalost");
       if (!udalost) return;
+      if (udalost === "Lead") {
+        // Lead jen po odeslani maleho formulare (Tally sem presmeruje). Odkaz z pripominkoveho
+        // e-mailu ma ?z=mail - ten clovek uz Lead poslal, podruhe by nafoukl vysledky reklamy.
+        // Znovunacteni stranky v tomtez okne Lead taky podruhe neposle (30. 9. 2026).
+        if (new URLSearchParams(location.search).get("z") === "mail") return;
+        try { if (sessionStorage.getItem("zavolamti_lead")) return; sessionStorage.setItem("zavolamti_lead", "1"); } catch (e) {}
+        fbq('track', 'Lead'); return;
+      }
       if (udalost !== "Purchase") { fbq('track', udalost); return; }
       // nakup: castka podle ?tarif= z presmerovani ze Stripu; znovunacteni stranky
       // v tomtez okne nakup podruhe neposle
