@@ -374,6 +374,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       <li><b>Toto je návrh (verze 1) jako podklad pro právníka</b> — před ostrým prodejem nechat zkontrolovat (odstoupení do 14 dnů, nahrávání hovorů, předávání dat do USA, cookie lišta u pixelu). Claude není právník.</li>
       <li>Doplnit datum spuštění do věty „Verze 1, platná od …"</li>
       <li>Meta pixel (24. 9. 2026): cookie lišta hotová, pixel jede jen po souhlasu. Nechat právníka posoudit společné správcovství s Metou (rozsudek Fashion ID) a zda Metu uvést i mezi příjemce údajů</li>
+      <li>Google Analytics (6. 10. 2026): načte se jen po souhlasu ve stejné liště jako pixel, Google signals vypnuté, uchování 14 měsíců. Nechat právníka zkontrolovat text v části 7 a řádek Google Analytics mezi příjemci</li>
       <li><b>Nakonec smazat tenhle žlutý pruh</b> (blok <code>class="checklist"</code>)</li>
     </ul>
   </div>
@@ -541,25 +542,56 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   // 5) Stripe odkazy — konfig má přednost před hodnotami zapečenými ve stránce
   if (K.STRIPE && window.DATA_STRIPE_HOOK) window.DATA_STRIPE_HOOK(K.STRIPE);
 
-  // 6) Meta pixel - jen na ostre domene, jen s ID a JEN PO SOUHLASU v liste (24. 9. 2026).
-  //    Dokud clovek neklikne "Souhlasim", nenacte se z Mety nic, ani skript.
-  //    Volba se drzi v localStorage (zavolamti_cookies = ano / ne) a zmenit ji jde
-  //    odkazem "Nastaveni cookies" v paticce. Bez pixelu se lista ani odkaz neukazou.
-  //    Udalosti: ViewContent (reklama, samouci), Lead (zkouska = nechal e-mail),
-  //    CompleteRegistration (dekuji-kontakt = objednal hovor), Purchase s castkou (dekuji).
+  // 6) Meta pixel a Google Analytics - jen na ostre domene, jen s ID a JEN PO SOUHLASU v liste
+  //    (Meta 24. 9. 2026, GA 6. 10. 2026). Dokud clovek neklikne "Prijmout vse", nenacte se z Mety
+  //    ani z Googlu nic, ani skript. Volba se drzi v localStorage (zavolamti_cookies = ano / ne)
+  //    a zmenit ji jde odkazem "Nastaveni cookies" v paticce. Bez pixelu i GA se lista ani odkaz neukazou.
+  //    Udalosti Meta / GA: ViewContent / - (reklama, samouci; GA ma page_view sam),
+  //    Lead / generate_lead (zkouska = nechal e-mail; ne s ?z=mail), CompleteRegistration / sign_up
+  //    (dekuji-kontakt = objednal hovor), Purchase / purchase s castkou v CZK (dekuji).
   var CK = "zavolamti_cookies";
   var mamePixel = !!(ostre && K.META_PIXEL_ID);
-  document.querySelectorAll("[data-cookies-wrap]").forEach(function(e){ e.hidden = !mamePixel; });
-  if (mamePixel) {
+  var mameGA = !!(ostre && K.GA_ID && /^G-[A-Z0-9]{4,20}$/.test(String(K.GA_ID).trim()));
+  var mereni = mamePixel || mameGA;
+  document.querySelectorAll("[data-cookies-wrap]").forEach(function(e){ e.hidden = !mereni; });
+  if (mereni) {
+    var meta = function(){ if (mamePixel && window.fbq) window.fbq.apply(null, arguments); };
+    var ga = function(nazev, p){ if (mameGA && window.gtag) window.gtag("event", nazev, p || {}); };
+    var spusteno = false;
     var spustPixel = function(){
-      if (window.fbq) return;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', K.META_PIXEL_ID); fbq('track', 'PageView');
+      if (spusteno) return;
+      spusteno = true;
+      if (mamePixel && !window.fbq) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', K.META_PIXEL_ID); fbq('track', 'PageView');
+      }
+      if (mameGA && !window.gtag) {
+        var gid = String(K.GA_ID).trim();
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){ window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", gid, {allow_google_signals: false, allow_ad_personalization_signals: false});
+        var g = document.createElement("script"); g.async = true;
+        g.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gid);
+        document.head.appendChild(g);
+      }
       var udalost = document.body.getAttribute("data-udalost");
       if (!udalost) return;
-      if (udalost !== "Purchase") { fbq('track', udalost); return; }
+      if (udalost === "Lead") {
+        // Lead jen po odeslani maleho formulare (Tally sem presmeruje). Odkaz z pripominkoveho
+        // e-mailu ma ?z=mail - ten clovek uz Lead poslal, podruhe by nafoukl vysledky reklamy.
+        // Znovunacteni stranky v tomtez okne Lead taky podruhe neposle (30. 9. 2026).
+        if (new URLSearchParams(location.search).get("z") === "mail") return;
+        try { if (sessionStorage.getItem("zavolamti_lead")) return; sessionStorage.setItem("zavolamti_lead", "1"); } catch (e) {}
+        meta('track', 'Lead'); ga("generate_lead"); return;
+      }
+      if (udalost === "CompleteRegistration") {
+        try { if (sessionStorage.getItem("zavolamti_registrace")) return; sessionStorage.setItem("zavolamti_registrace", "1"); } catch (e) {}
+        meta('track', 'CompleteRegistration'); ga("sign_up", {method: "formular"}); return;
+      }
+      if (udalost !== "Purchase") { meta('track', udalost); return; }
       // nakup: castka podle ?tarif= z presmerovani ze Stripu; znovunacteni stranky
       // v tomtez okne nakup podruhe neposle
       var q = new URLSearchParams(location.search), tarif = q.get("tarif") || "";
@@ -569,11 +601,19 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       try { if (sessionStorage.getItem(zn)) return; sessionStorage.setItem(zn, "1"); } catch (e) {}
       var cena = (window.DATA_NAKUP || {})[tarif];
       var data = cena ? {value: cena, currency: 'CZK', content_name: tarif} : {};
-      if (sid) fbq('track', 'Purchase', data, {eventID: sid}); else fbq('track', 'Purchase', data);
+      if (sid) meta('track', 'Purchase', data, {eventID: sid}); else meta('track', 'Purchase', data);
+      var gp = {currency: "CZK", value: cena || 0, items: [{item_id: tarif || "neznamy", item_name: tarif || "neznamy"}]};
+      if (sid) gp.transaction_id = sid;
+      ga("purchase", gp);
     };
     var smazCookies = function(){
       var d = location.hostname.replace(/^www\./, "");
-      ["_fbp", "_fbc"].forEach(function(n){
+      var jmena = ["_fbp", "_fbc", "_ga"];
+      document.cookie.split(";").forEach(function(c){
+        var n = c.split("=")[0].trim();
+        if (/^_ga_/.test(n)) jmena.push(n);
+      });
+      jmena.forEach(function(n){
         document.cookie = n + "=; Max-Age=0; path=/";
         document.cookie = n + "=; Max-Age=0; path=/; domain=." + d;
       });
@@ -599,7 +639,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       el.id = "cookie-lista"; el.className = "cookie-lista";
       el.setAttribute("role", "region"); el.setAttribute("aria-label", "Nastavení cookies");
       el.innerHTML = '<p>Tento web používá cookies. Nezbytné cookies zajišťují jeho fungování. ' +
-        'S vaším souhlasem použijeme i marketingové cookies pro měření reklamy. Svou volbu můžete kdykoli změnit v patičce webu. ' +
+        'S vaším souhlasem použijeme i analytické cookies (Google Analytics) pro statistiku návštěvnosti a marketingové cookies (Meta) pro měření reklamy. Svou volbu můžete kdykoli změnit v patičce webu. ' +
         '<a href="osobni-udaje-b.html#cookies">Více informací</a></p>' +
         '<div class="cl-tlacitka"><button type="button" class="cl-btn" data-v="ano">Přijmout vše</button>' +
         '<button type="button" class="cl-btn" data-v="ne">Odmítnout vše</button></div>';
@@ -610,7 +650,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
         el.parentNode.removeChild(el);
         if (v === "ano") { spustPixel(); return; }
         smazCookies();
-        if (window.fbq) location.reload();   // uz nacteny kod po odvolani souhlasu zastavit
+        if (window.fbq || window.gtag) location.reload();   // uz nacteny kod po odvolani souhlasu zastavit
       });
       document.body.appendChild(el);
     };
