@@ -2,6 +2,19 @@
 <html lang="cs">
 <head>
 <meta charset="utf-8">
+<script>
+/* A/B test uvodni stranky (6. 10. 2026). Reklama vede sem; polovina lidi jde hned na reklama-b.html.
+   Varianta se pamatuje v prohlizeci (zavolamti_ab = a/b), aby clovek pri dalsi navsteve videl stejnou.
+   ?ab=a nebo ?ab=b vynuti variantu (kontrola). Na reklama-b.html se nespusti (jina adresa). */
+(function(){
+  if (!/\/reklama(\.html)?$/.test(location.pathname)) return;
+  var KL = "zavolamti_ab", v = null, m = /[?&]ab=([ab])(&|$)/.exec(location.search);
+  try { v = m ? m[1] : localStorage.getItem(KL); } catch (e) {}
+  if (v !== "a" && v !== "b") v = Math.random() < 0.5 ? "a" : "b";
+  try { localStorage.setItem(KL, v); } catch (e) {}
+  if (v === "b") location.replace("reklama-b.html" + location.search + location.hash);
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cizí jazyk po telefonu | Zavolám ti</title>
 <meta name="description" content="Třikrát týdně vám zazvoní telefon a pět minut mluvíte cizím jazykem s umělou inteligencí. Rozbor e-mailem do půl hodiny. Jeden hovor zdarma na zkoušku.">

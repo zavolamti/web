@@ -375,6 +375,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       <li>Doplnit datum spuštění do věty „Verze 1, platná od …"</li>
       <li>Meta pixel (24. 9. 2026): cookie lišta hotová, pixel jede jen po souhlasu. Nechat právníka posoudit společné správcovství s Metou (rozsudek Fashion ID) a zda Metu uvést i mezi příjemce údajů</li>
       <li>Google Analytics (6. 10. 2026): načte se jen po souhlasu ve stejné liště jako pixel, Google signals vypnuté, uchování 14 měsíců. Nechat právníka zkontrolovat text v části 7 a řádek Google Analytics mezi příjemci</li>
+      <li>A/B test úvodní stránky (6. 10. 2026): reklama-b.html pošle polovinu návštěvníků na reklama-b.html a variantu (a/b) si uloží do localStorage bez souhlasu. Nechat právníka posoudit, zda je to nezbytné uložení, nebo má jít až po souhlasu v liště</li>
       <li><b>Nakonec smazat tenhle žlutý pruh</b> (blok <code>class="checklist"</code>)</li>
     </ul>
   </div>
@@ -444,6 +445,7 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
 <p>Web sám žádné cookies neukládá. Vložený formulář (Tally) a platební brána (Stripe) používají technické cookies nutné pro svou funkci. Video na stránce s ceníkem přehrává služba Wistia v režimu ochrany soukromí, tedy bez sledovacích cookies.</p>
 <p>Když běží reklama na Facebooku a Instagramu, může web používat měřicí kód společnosti Meta Platforms Ireland Limited. Ukládá cookies (<code>_fbp</code>, <code>_fbc</code>, platí zhruba tři měsíce) a zjišťuje, jestli návštěva přišla z reklamy a jestli skončila objednávkou. <b>Načte se, jen když ho povolíte v liště na webu.</b> Bez souhlasu se z Mety nenačte nic. Vaše volba se ukládá jen ve vašem prohlížeči a kdykoli ji změníte odkazem „Nastavení cookies" v patičce stránky.</p>
 <p>Pro statistiku návštěvnosti (kolik lidí web navštívilo, odkud přišli, které stránky si prohlédli a zda odeslali formulář nebo zaplatili) může web používat Google Analytics 4 společnosti Google Ireland Limited. Ukládá cookies (<code>_ga</code> a <code>_ga_…</code>, platí až dva roky), IP adresu neukládá. Údaje se v Google Analytics uchovávají 14 měsíců a sdílení s reklamními službami Googlu je vypnuté. <b>Načte se, jen když ho povolíte v liště na webu</b>, stejnou volbou jako měřicí kód Mety.</p>
+<p>Na stránce, kam vede reklama, zkoušíme dvě podoby úvodní stránky. Polovině návštěvníků se ukáže jedna, polovině druhá. Kterou jste viděli (údaj „a“ nebo „b“), si web pamatuje ve vašem prohlížeči, abyste při další návštěvě dostali stejnou. Nejde o cookie, údaj neobsahuje nic, podle čeho by vás šlo poznat, a nikam se neposílá.</p>
 
 <h2>8. Bezpečnost</h2>
 <p>Přístupové klíče ke všem službám jsou uloženy v šifrovaném úložišti, úložiště s vašimi údaji je soukromé, komunikace je šifrovaná (HTTPS). Přístup k údajům má pouze správce.</p>
