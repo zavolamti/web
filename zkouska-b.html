@@ -405,6 +405,17 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   </div>
 </section>
 
+<script>
+/* z=mail hero (12. 10. 2026): kdo prijde z follow-up e-mailu (?z=mail), nenechal e-mail prave ted,
+   takze misto "Diky, e-mail mam" vidi rovnou nabidku hovoru. */
+(function(){
+  if (new URLSearchParams(location.search).get("z") !== "mail") return;
+  var h = document.querySelector(".hero h1"), l = document.querySelector(".hero .lede");
+  if (h) h.textContent = "Jeden hovor zdarma";
+  if (l) l.textContent = "Pět minut cizím jazykem, bez karty a bez závazku. Stačí číslo, jméno a jazyk a do dvou pracovních dnů vám zazvoní telefon.";
+})();
+</script>
+
 <!-- ===================== REFERENCE ===================== -->
 <section>
   <div class="wrap">
