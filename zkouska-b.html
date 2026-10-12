@@ -5,9 +5,9 @@
 <meta name="robots" content="noindex,follow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zkušební hovor zdarma | Zavolám ti</title>
-<meta name="description" content="Poslední krok: číslo, jméno a jazyk. Do dvou pracovních dnů zazvoní telefon.">
+<meta name="description" content="Díky za e-mail. Jeden zkušební hovor zdarma: číslo, jméno a jazyk, do dvou pracovních dnů zazvoní telefon.">
 <meta property="og:title" content="Zkušební hovor zdarma | Zavolám ti">
-<meta property="og:description" content="Poslední krok: číslo, jméno a jazyk. Do dvou pracovních dnů zazvoní telefon.">
+<meta property="og:description" content="Díky za e-mail. Jeden zkušební hovor zdarma: číslo, jméno a jazyk, do dvou pracovních dnů zazvoní telefon.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zavolamti.cz/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -374,8 +374,8 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   <div class="wrap">
     <h4>Před spuštěním doplnit</h4>
     <ul>
-      <li>Druhý krok dvoukrokového funnelu. První krok je na <code>reklama-b.html</code> (jen e-mail + souhlas), Tally ho po odeslání přesměruje sem.</li>
-      <li>V Tally u formuláře na e-mail nastavit Redirect on completion na <code>https://zavolamti.cz/zkouska-b.html</code></li>
+      <li>Od 12. 10. 2026 děkovací stránka: sem Tally přesměruje po odeslání malého formuláře na <code>reklama-b.html</code> (e-mail za informace). Tady je nabídka zkušebního hovoru s velkým formulářem.</li>
+      <li>Reference: e-maily testerů po zkušebním hovoru (září 2026), zkrácené, slova beze změny, jen křestní jméno a iniciála (Petr 12. 10.)</li>
       <li><b>Nakonec smazat tenhle žlutý pruh</b> (blok <code>class="checklist"</code>)</li>
     </ul>
   </div>
@@ -384,12 +384,13 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
 <header class="top">
   <div class="wrap">
     <a class="logo" href="index-b.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5" fill="none" stroke="#7C4DFF" stroke-width="2.6"/><line x1="10" y1="18.5" x2="14" y2="18.5" stroke="#7C4DFF" stroke-width="2.6" stroke-linecap="round"/></svg> Zavolám ti</a>
-    
+    <nav class="topnav"><a href="nabidka-b.html?zdroj=reklama-b">Ceník</a></nav>
   </div>
 </header>
 
 
-<section class="hero" style="padding-bottom:24px">
+<!-- ===================== DÍKY (12. 10. 2026: děkovací stránka + nabídka hovoru) ===================== -->
+<section class="hero" style="padding-bottom:40px">
   <div class="wrap">
     <div class="stepline">
       <span class="pill done">E-mail</span>
@@ -397,27 +398,138 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       <span class="pill">Zvoní telefon</span>
       <span class="pill">Rozbor v e-mailu</span>
     </div>
-    <h1>Zbývá poslední krok</h1>
-    <p class="lede">Číslo, jméno a jazyk. Nic víc — žádná registrace, žádné heslo.
-      Do dvou pracovních dnů vám zazvoní telefon.</p>
+    <h1>Díky, e-mail mám.</h1>
+    <p class="lede">Občas vám napíšu, na co jsem při mluvení cizím jazykem přišel. A jestli to chcete zkusit hned: jeden hovor je zdarma, bez karty a bez závazku. Stačí číslo, jméno a jazyk a do dvou pracovních dnů vám zazvoní telefon.</p>
   </div>
 </section>
 
-<section style="padding-top:0">
+<!-- ===================== ZKUŠEBNÍ HOVOR ===================== -->
+<section class="zkouska" id="zkouska">
   <div class="wrap">
-    <div class="slot form" id="zkouska-slot" style="min-height:420px">
-      <div>
-        <b>Sem přijde formulář</b>
-        Tentýž vložený formulář z Tally jako na úvodní stránce (<code>TALLY_FORM_ID</code>).
-        <span class="dims">Načte se sám, jakmile je ID v konfig.js.</span>
+    <h2>Jeden hovor zdarma</h2>
+    <p class="lede">Pět minut cizím jazykem s umělou inteligencí, před kterou se nemusíte stydět. Do půl hodiny po hovoru přijde rozbor.</p>
+    <div style="margin-top:30px">
+      <div class="slot form" id="zkouska-slot" style="min-height:420px">
+        <div>
+          <b>Sem přijde formulář</b>
+          Velký formulář z Tally (<code>TALLY_FORM_ID</code>): číslo, jméno a jazyk.
+          <span class="dims">Načte se sám, jakmile je ID v konfig.js.</span>
+        </div>
       </div>
     </div>
-    <p class="tiny" style="margin-top:18px">Vaše číslo použiju jen na tenhle jeden hovor. Hovor se přepisuje,
+    <p class="tiny" style="margin-top:18px">Vaše číslo použiju jen na zkušební hovor. Hovor se přepisuje,
       aby z něj mohl vzniknout rozbor — podrobnosti v
       <a href="osobni-udaje-b.html" style="text-decoration:underline">dokumentu o zpracování osobních údajů</a>.</p>
   </div>
 </section>
 
+<!-- ===================== REFERENCE ===================== -->
+<section>
+  <div class="wrap">
+    <h2>Co mi napsali po zkušebním hovoru</h2>
+    <p class="lede">V září si hovor vyzkoušeli první lidé a pár z nich mi potom napsalo. Tady jsou jejich slova, zkrácená, jinak doslova.</p>
+    <div class="recenze">
+      <figure class="rec"><blockquote><p>„Sice jsem byla nervózní…, ale bylo by to pro mne ideální, protože už se dva roky učím prostřednictvím Duolinga, ale v Itálii během hovoru často zamrznu a automaticky přejdu do angličtiny. Tohle je super…“</p></blockquote><figcaption class="kdo"><b>Tereza H.</b><span>italština</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Já bych se sama určitě nedonutila a tady by to aplikace udělala za mě … myslím že pro začátečníky je i ideální těch 5 minut za mě prostě skvělý nápad jo a úžasný je i ten rozbor do emailu“</p></blockquote><figcaption class="kdo"><b>Zdenka</b><span>zkušební hovor</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Povídání bylo moc fajn, líbila se mi pohotovost dalších dotazu plynule navazujících na mé odpovědi. Rozbor taky super.“</p></blockquote><figcaption class="kdo"><b>Terka L.</b><span>zkušební hovor</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Potřebuji opravdu moc trénovat. … Toto je výborný způsob, jak se učit mluvit.“</p></blockquote><figcaption class="kdo"><b>Jitka P.</b><span>italština</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Velmi sa mi to pačilo. Hlavne ten rozbor co bolo dobre a co zle. Rad si to este zopakujem.“</p></blockquote><figcaption class="kdo"><b>Robo H.</b><span>zkušební hovor</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Bylo to fajn. Chci se rozmluvit a nějak nevím jak na to.“</p></blockquote><figcaption class="kdo"><b>Romana S.</b><span>zkušební hovor</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UKÁZKY E-MAILŮ ===================== -->
+<section class="plane">
+  <div class="wrap">
+    <h2>Co vám po hovoru přijde do e-mailu</h2>
+    <p class="lede">Rozbor píše umělá inteligence z přepisu hovoru. Nechválí obecně, cituje, co jste skutečně řekli. Takhle vypadá rozbor jednoho hovoru (ukázka).</p>
+
+    <div class="mail">
+      <div class="hd"><b>Rozbor hovoru — 31. 8. 20:14 — what you did last weekend</b><br>Téma: víkend · Délka hovoru: 340 s · Slov anglicky: 312</div>
+      <div class="bd">
+        <p>Ahoj Tomáši,</p>
+        <h4>Rozuměl by ti cizinec?</h4>
+        <p>Ano, bez větších potíží. Mike se ani jednou nemusel zeptat znovu a vždycky věděl, o čem mluvíš. Správná angličtina to ale vždycky nebyla — hlavně u minulého času, viz níž. Rozumět a mluvit správně jsou dvě různé věci a dnes jsi měl to první.</p>
+        <h4>Co ti šlo</h4>
+        <ul>
+          <li>„We went to my parents' house on Saturday" — celá věta, správný čas, na první pokus.</li>
+          <li>Nevěděl jsi slovo sekačka, tak jsi řekl „the machine for the grass" a jelo se dál. Přesně tak se to dělá.</li>
+          <li>Sám jsi položil otázku („And you? What did you do?") — poprvé za všechny hovory.</li>
+        </ul>
+        <h4>Na tomhle zapracuj</h4>
+        <ul>
+          <li>❌ <span class="fix">I go yesterday to Brno</span> → ✅ <span class="ok">I went to Brno yesterday</span><br><span class="small">Když říkáš, co se stalo, sloveso musí být v minulém tvaru — a „yesterday" patří na konec.</span></li>
+          <li>❌ <span class="fix">I have 44 years</span> → ✅ <span class="ok">I am 44</span><br><span class="small">Věk se v angličtině „je", ne „má". Tohle je nejčastější česká chyba a Američan ji hned pozná.</span></li>
+          <li>❌ <span class="fix">We make a barbecue</span> → ✅ <span class="ok">We had a barbecue</span><br><span class="small">Grilování se „má", ne „dělá" — a bylo to o víkendu, tedy minulý čas.</span></li>
+        </ul>
+        <h4>Kolik jsi toho namluvil</h4>
+        <p>312 slov — zatím nejvíc. První dvě minuty krátké odpovědi, od půlky hovoru delší věty. Rozmluvit se je celý cíl a dnes se to stalo.</p>
+        <h4>Fráze do kartiček</h4>
+        <ul>
+          <li>mow the lawn = posekat trávu<br><span class="small">I mowed the lawn on Sunday. = V neděli jsem posekal trávu.</span></li>
+          <li>have a barbecue = grilovat<br><span class="small">We had a barbecue with friends. = Grilovali jsme s přáteli.</span></li>
+          <li>I'm 44 = je mi 44<br><span class="small">I'm 44, my wife is 41. = Je mi 44, manželce 41.</span></li>
+          <li>lawn mower = sekačka<br><span class="small">We have an old lawn mower. = Máme starou sekačku.</span></li>
+        </ul>
+        <h4>Co příště</h4>
+        <p>Zkus každou odpověď protáhnout o jednu větu navíc. Ne správnější — delší. Správnost přijde sama.</p>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:14px">U němčiny rozbor navíc sleduje poslech (odpovídali jste na to, na co se partner ptal?) a pojmenuje pravidlo, které vám v řeči utíká. U španělštiny, italštiny a francouzštiny obdobně to, na čem Češi zakopávají nejčastěji.</p>
+
+    <!-- ukázka měsíčního přehledu (2. 10. 2026): anglická část skutečného Petrova reportu za září, opsaná doslova;
+         z „Tří věcí“ vynechána první (obsahovala věk manželky) -->
+    <h3 style="margin-top:48px">A prvního v měsíci přehled: kde jste byli a kde jste</h3>
+    <p class="lede">Jednou za měsíc porovná vaše první hovory s posledními, spočítá, kolik jste toho namluvili, a odhadne, na jaké úrovni mluvíte (A1 až C2). Tohle je anglická část mého vlastního přehledu za září, opsaná doslova.</p>
+    <div class="mail">
+      <div class="hd"><b>Report za měsíc — 1.&nbsp;10.&nbsp;2026 — angličtina</b><br>Petr, zakladatel Zavolám ti · 15&nbsp;hovorů · 64&nbsp;minut u mikrofonu · 3&nbsp;073&nbsp;slov nahlas</div>
+      <div class="bd">
+        <h4>Kde jsi byl a kde jsi</h4>
+        <p>Na začátku měsíce jsi mluvil opatrně, používal jen krátké fráze jako „me great“ a míchal přítomnost s minulostí („we are on vacation“). Během září ses neuvěřitelně rozmluvil, překonal stud a začal tvořit celá souvětí i o složitých tématech. Na konci měsíce už dokážeš sám usměrňovat konverzaci a přirozeně reagovat („We live in nature between fields and trees“ nebo „you mean something like tomatoes, cucumbers?“). Udělal jsi obrovský skok v odvaze mluvit.</p>
+        <h4>Odhad úrovně</h4>
+        <p>A1/A2 – Mluvíš odvážně a k věci, máš dobrou zásobu slov a rozumíš hlavní myšlence, ale věty skládáš s českým slovosledem a s chybějícími pomocnými slovesy.</p>
+        <h4>Tři věci, které se opakují</h4>
+        <ul>
+          <li>Špatná tvorba záporu u běžných sloves<br>❌ <span class="fix">we not live / I have not neighbors</span> → ✅ <span class="ok">we don't live / I don't have neighbors</span><br><span class="small">Pro zápor v přítomném čase potřebuješ před sloveso vložit <i>don't</i>.</span></li>
+          <li>Záměna zájmen pro muže a ženy (he/his vs. she/her)<br>❌ <span class="fix">my wife... I clean his cages</span> → ✅ <span class="ok">my wife... I clean her cages</span><br><span class="small">Pro ženy používáme <i>she</i> (ona) a <i>her</i> (její), <i>his</i> znamená „jeho“.</span></li>
+        </ul>
+        <h4>Je čas přitvrdit?</h4>
+        <p>JEŠTĚ NE, protože v gramatice stále chybí základní stavební kameny (zápor <i>don't</i>, sloveso <i>to be</i>) a je potřeba nejdřív upevnit tuto jednoduchou strukturu, než partner zrychlí nebo ztíží jazyk.</p>
+        <h4>Na čem pracovat příští měsíc</h4>
+        <p>Zaměř se vědomě na záporné věty se spojkou I don't... (např. <i>I don't know, I don't have, I don't work</i>) a na správné říkání věku pomocí is/are.</p>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:14px">Ze tří opakovaných chyb jsem vynechal jednu, byl v ní soukromý údaj. U němčiny, italštiny a francouzštiny přehled navíc sleduje, jak se zlepšuje poslech. Přehled chodí u všech tarifů.</p>
+  </div>
+</section>
+
+<!-- ===================== PŘÍBĚH ===================== -->
+<section>
+  <div class="wrap">
+    <h2>Proč jsem to postavil</h2>
+    <p>Slovíčka jsem uměl, mluvit jsem se styděl. Celý příběh, pokud jste ho ještě nečetli:</p>
+    <details>
+      <summary style="cursor:pointer;font-weight:700;margin:6px 0 20px">Přečíst celý příběh</summary>
+      <p>Vždycky mě bavily cizí jazyky a chtěl jsem se v nich naučit mluvit. Slovní zásoba pro mě nikdy nebyla problém, ani pochopit gramatiku nebo smysl jazyka. Problém u mě vždycky nastal až v další fázi po slovní zásobě a gramatice. A tou bylo mluvení.</p>
+      <p>Vím, že abych se v cizím jazyce zdokonalil, potřebuji mluvit. Slovní zásoba, poslouchání filmů ani čtení mi potom v reálném životě a v reálné situaci nepomůžou. Musím mluvit. A abych v cizím jazyce mluvil co nejlíp, potřebuji mluvit s někým, kdo ten jazyk naplno ovládá. Úplně nejlepší je mluvit s rodilým mluvčím.</p>
+      <p>Jenže tady u mě nastává obrovský problém a zároveň největší a jediná překážka v tom naučit se mluvit cizím jazykem.</p>
+      <p class="pull">A tou je stud.</p>
+      <p>Stydím se mluvit před jiným člověkem, protože se bojím, že budu za blbce. Že to budu plést, že mi druhý nebude rozumět a že na mě bude koukat jednoduše jako na pitomce. Neříkám to proto, abych přeháněl, ale protože se tak u toho opravdu cítím. Takže někomu zavolat nebo mluvit s někým, kdo žije v zahraničí, je pro mě prostě nepřekonatelný problém.</p>
+      <p>Další možnost je najmout si lektora. Ale to je podobný případ, i tam je stud, i když menší. Navíc se mi nechce platit třeba 500 Kč za hodinu, abych mluvil jen jednou týdně. A mám zkušenost, že v téhle frekvenci mi to nepomůže. Není to kritika lektorů, to ani náhodou. Jejich cenu respektuji, protože je to jejich práce. Ale pro mě tohle prostě taky není cesta.</p>
+      <p>Pak jsou tu ještě aplikace typu Duolingo, které už dnes mají integrovanou umělou inteligenci a můžu s nimi konverzovat. A tam je poslední problém, který má skoro každý z nás: tu aktivitu stejně musím vyvinout já. Já musím vzít do ruky telefon, já musím aplikaci pustit a já musím začít. Dokud telefon do ruky nevezmu, nezačnu.</p>
+      <p>Z vlastní zkušenosti vím, že nejlepších výsledků člověk dosáhne malými kroky, ale pravidelně. Ověřil jsem si to u cvičení. Chtěl jsem mít vyrýsované svaly, ale když jsem chodil do posilovny jednou týdně, nemělo to žádný efekt. Když jsem ale začal cvičit doma pět minut každý den, efekt byl obrovský. A pochopil jsem, že u výuky jazyků je to stejné. Nemusím hodinu sedět u lektora ani hodinu sedět u Duolinga. Stačí tomu každý den věnovat pět minut a výsledek přijde.</p>
+      <p>A tak mě napadlo postavit si v dnešní éře umělé inteligence vlastní aplikaci na výuku jazyků a odstranit všechno, co mi u jiných forem nebo platforem vadí nebo nevyhovuje.</p>
+      <p>Postavil jsem si robota, nebo aplikaci, která tyhle problémy řeší. Zjednodušeně řečeno: každý den mi v nějakém časovém okně zavolá a pět minut si povídám s hlasem umělé inteligence, který se dnes už dost blíží člověku. Povídáme si na nějaké téma a on mě vede sám. Nemusím vymýšlet témata, on se mě ptá a rozvádí je. Když nevím, tak to vysvětlí. Nikdy se mnou nemluví česky, to má striktně zakázáno.</p>
+      <p>Pro mě to má ten efekt, že trénuji poslech cizího jazyka a mluví se mnou rodilý mluvčí. Nestydím se, že něco spletu, protože mě robot nehodnotí. Nemusím přemýšlet a dokopávat se k té aktivitě, protože mi v daném časovém okně agent zavolá sám. Já jen přijmu hovor a pět minut s ním vedu rozhovor.</p>
+      <p>Pár minut po rozhovoru mi do e-mailu přijde vyhodnocení hovoru: co mi šlo, co mi nešlo a opravy, kde jsem se pletl.</p>
+      <p>Po prvním měsíci jsem udělal obrovský pokrok. Najednou dokážu vést i delší souvětí a sám od sebe se pustit do hlubších témat.</p>
+      <p class="small" style="margin-top:22px">— Petr, zakladatel Zavolám ti</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== CO BUDE DÁL ===================== -->
 <section class="plane">
   <div class="wrap">
     <h2>Co bude dál</h2>
@@ -432,9 +544,51 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
       </li>
       <li>
         <h3>Do půl hodiny přijde rozbor</h3>
-        <p>Co bylo dobře, co špatně a jak se to říká správně. A tím zkouška končí — nikdo vám nevolá znovu.</p>
+        <p>Co bylo dobře, co špatně a jak se to říká správně. A tím zkouška končí — nikdo vám nevolá znovu, dokud si to sami neřeknete.</p>
       </li>
     </ol>
+  </div>
+</section>
+
+<!-- ===================== KOLIK TO STOJÍ ===================== -->
+<section>
+  <div class="wrap">
+    <h2>Kolik to stojí</h2>
+    <div class="callout">Zkušební hovor zdarma, bez karty a bez registrace. Kdo bude chtít pokračovat, platí od 497 Kč měsíčně podle toho, jak často má telefon zvonit. Bez závazku, zrušíte kdykoli.</div>
+    <p style="margin-top:22px"><a class="btn ghost" href="nabidka-b.html?zdroj=reklama-b">Podívat se na celý ceník</a></p>
+  </div>
+</section>
+
+<!-- ===================== OTÁZKY ===================== -->
+<section class="plane">
+  <div class="wrap">
+    <h2>Časté otázky</h2>
+    <div class="qa"><h3>Je zkušební hovor opravdu zdarma?</h3>
+      <p>Ano. Jeden hovor, jeden rozbor, žádná karta, žádné přihlašování. Když nebudete chtít
+        pokračovat, neděláte nic a už vám nikdo nezavolá.</p></div>
+    <div class="qa"><h3>Je to náhrada lektora?</h3>
+      <p>Ne. Lektor vás učí. Tohle vás nutí mluvit — třikrát týdně, i když se vám nechce.
+        Klidně můžete mít obojí.</p></div>
+    <div class="qa"><h3>S kým budu mluvit v reálu, když teď mluvím se strojem?</h3>
+      <p>S lidmi, o to jde. Jenže mezi „umím slovíčka" a „otevřu pusu na člověka" je propast
+        a tu nepřejdete tím, že se budete dívat na druhý břeh. Tohle je rozcvička, ne cíl.</p></div>
+    <div class="qa"><h3>Co když nebudu rozumět?</h3>
+      <p>Řeknete to a partner to zopakuje jednodušeji a pomaleji. Začátečníkům mluví krátkými
+        větami a nikam nespěchá. Během hovoru vás neopravuje; na to je rozbor potom.</p></div>
+    <div class="qa"><h3>Co když zrovna nemůžu zvednout?</h3>
+      <p>Nevadí, zavolá znovu v dalším termínu. Za nezvednutý hovor se nic neplatí navíc.</p></div>
+    <div class="qa"><h3>Nahrávají se hovory?</h3>
+      <p>Hovor se přepíše do textu, aby z něj mohl vzniknout váš rozbor. Zvuk se neukládá.
+        Podrobnosti v <a href="osobni-udaje-b.html">dokumentu o zpracování osobních údajů</a>.</p></div>
+  </div>
+</section>
+
+<!-- ===================== ZNOVU NABÍDKA ===================== -->
+<section class="center">
+  <div class="wrap">
+    <h2>Zkusíte to?</h2>
+    <p class="lede">Jeden hovor, pět minut, zdarma. Nejhorší, co se může stát, je, že si pět minut popovídáte.</p>
+    <div class="cta" style="margin-top:26px"><a class="btn" href="#zkouska">Chci jeden hovor zdarma</a></div>
   </div>
 </section>
 
