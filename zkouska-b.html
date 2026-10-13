@@ -690,8 +690,10 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   //    ani z Googlu nic, ani skript. Volba se drzi v localStorage (zavolamti_cookies = ano / ne)
   //    a zmenit ji jde odkazem "Nastaveni cookies" v paticce. Bez pixelu i GA se lista ani odkaz neukazou.
   //    Udalosti Meta / GA: ViewContent / - (reklama, samouci; GA ma page_view sam),
-  //    Lead / generate_lead (zkouska = nechal e-mail; ne s ?z=mail), CompleteRegistration / sign_up
-  //    (dekuji-kontakt = objednal hovor), Purchase / purchase s castkou v CZK (dekuji).
+  //    CompleteRegistration + Lead / generate_lead (zkouska = nechal e-mail; ne s ?z=mail),
+  //    StartTrial / sign_up (dekuji-kontakt = objednal zkusebni hovor), Purchase / purchase s castkou
+  //    v CZK (dekuji). Prohozeno 12. 10. 2026: kampan s cilem Prodej optimalizuje na Dokonceni
+  //    registrace = nechany e-mail (Lead cil Prodej nenabizi), objednany hovor je proto StartTrial.
   var CK = "zavolamti_cookies";
   var mamePixel = !!(ostre && K.META_PIXEL_ID);
   var mameGA = !!(ostre && K.GA_ID && /^G-[A-Z0-9]{4,20}$/.test(String(K.GA_ID).trim()));
@@ -726,13 +728,17 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
         // Lead jen po odeslani maleho formulare (Tally sem presmeruje). Odkaz z pripominkoveho
         // e-mailu ma ?z=mail - ten clovek uz Lead poslal, podruhe by nafoukl vysledky reklamy.
         // Znovunacteni stranky v tomtez okne Lead taky podruhe neposle (30. 9. 2026).
+        // Do Mety jde jako CompleteRegistration (na to optimalizuje kampan s cilem Prodej)
+        // a zaroven dal jako Lead, aby nespadly kampane s cilem Potencialni zakaznici (12. 10. 2026).
         if (new URLSearchParams(location.search).get("z") === "mail") return;
         try { if (sessionStorage.getItem("zavolamti_lead")) return; sessionStorage.setItem("zavolamti_lead", "1"); } catch (e) {}
-        meta('track', 'Lead'); ga("generate_lead"); return;
+        meta('track', 'CompleteRegistration'); meta('track', 'Lead'); ga("generate_lead"); return;
       }
       if (udalost === "CompleteRegistration") {
+        // Objednany zkusebni hovor (velky formular). Do Mety od 12. 10. 2026 jako StartTrial,
+        // aby se nepletl s nechanym e-mailem (ten je CompleteRegistration).
         try { if (sessionStorage.getItem("zavolamti_registrace")) return; sessionStorage.setItem("zavolamti_registrace", "1"); } catch (e) {}
-        meta('track', 'CompleteRegistration'); ga("sign_up", {method: "formular"}); return;
+        meta('track', 'StartTrial'); ga("sign_up", {method: "formular"}); return;
       }
       if (udalost !== "Purchase") { meta('track', udalost); return; }
       // nakup: castka podle ?tarif= z presmerovani ze Stripu; znovunacteni stranky
