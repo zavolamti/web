@@ -379,6 +379,25 @@ html .cookie-lista{background:var(--paper);color:var(--ink);border:var(--line);b
 html .cl-btn{font-family:var(--display);font-weight:800;font-size:16px;background:var(--grape-d);border:var(--line);color:#fff;border-radius:999px;box-shadow:var(--shadow-sm)}
 html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translate(-1px,-1px)}
 
+/* reklama 14. 10. 2026: tri prekazky, formular nahore, video */
+.prekazky{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:10px}
+.prekazky li{background:var(--paper);border:var(--line);border-radius:14px;box-shadow:var(--shadow-sm);padding:8px 14px;font-size:16.5px;line-height:1.4;margin:0}
+.prekazky span{color:var(--coral);font-weight:800}
+.prekazky s{color:var(--ink-soft);text-decoration-color:var(--coral);text-decoration-thickness:3px}
+.prekazky b{font-family:var(--display);font-weight:800}
+.krok-karta{background:var(--grape);color:#fff;border:var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 18px 20px;scroll-margin-top:16px}
+.krok-karta h2{color:#fff;background:none;display:block;font-size:clamp(24px,3.4vw,32px);margin:0 0 6px;text-shadow:none}
+.krok-karta p{color:#fff;font-size:16.5px;line-height:1.5;margin:0 0 16px}
+.krok-karta .stepline{margin-bottom:14px}
+.krok-karta .pill{background:rgba(255,255,255,.18);color:#fff}
+.krok-karta .pill.now{background:var(--lemon);color:var(--ink)}
+.krok-karta .tiny{color:#EAE2FF;margin:14px 0 0}
+.krok-karta .tiny a{color:var(--lemon)}
+.video-box{margin:0}
+.video-embed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;border:0}
+.video-pod{font-size:15px;color:var(--ink-soft);text-align:center;margin:10px 0 0}
+.hero-grid.s-videem{align-items:start}
+
 </style>
 </head>
 <body data-udalost="ViewContent">
@@ -387,8 +406,9 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   <div class="wrap">
     <h4>Před spuštěním doplnit</h4>
     <ul>
-      <li>Od 12. 10. 2026 první krok funnelu: příběh + e-mail za informace. Po odeslání malého formuláře Tally přesměruje na <code>zkouska-b.html</code> (děkovací stránka s nabídkou hovoru).</li>
-      <li>V malém formuláři v Tally musí být zaškrtávátko souhlasu se zasíláním e-mailů <b>povinné</b> (Required), jinak follow-up dostane jen část lidí</li>
+      <li>Od 14. 10. 2026: nahoře formulář „Hovor zdarma ve 2 krocích“ (1. e-mail, 2. číslo a jazyk na <code>zkouska-b.html</code>), vedle video, pod tím reference, jak to funguje a celý příběh.</li>
+      <li>Na web nahrát i <code>video-pribeh.mp4</code> a <code>video-pribeh.jpg</code> (náhled videa).</li>
+      <li>V Tally u obou malých formulářů přepsat tlačítko „Submit“ na „Pokračovat na krok 2 →“.</li>
       <li><b>Nakonec smazat tenhle žlutý pruh</b> (blok <code>class="checklist"</code>)</li>
     </ul>
   </div>
@@ -401,73 +421,48 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
 </header>
 
 
-<!-- ===================== HERO (12. 10. 2026: první krok = příběh + e-mail) ===================== -->
+<!-- ===================== HERO (14. 10. 2026: stud, lektor, lenost + formular hned nahore) ===================== -->
 <section class="hero">
-  <div class="wrap hero-grid">
+  <div class="wrap hero-grid s-videem">
     <div class="hero-text">
-      <p class="eyebrow">Jak vznikl Zavolám ti</p>
-      <h1>Slovíčka jsem uměl. Mluvit jsem se styděl.</h1>
-      <p class="lede">Tak jsem si postavil robota, který mi sám zavolá a pět minut se mnou mluví cizím jazykem. Tady je celý příběh. A jestli vás zajímá víc, nechte mi na konci e-mail.</p>
-      <div class="cta" style="margin-top:26px"><a class="btn block" href="#pribeh">Přečíst příběh</a></div>
-      <p class="tiny underbtn">Nebo rovnou <a href="#email">dolů k e-mailu</a>.</p>
+      <h1>Stydíte se mluvit cizím jazykem před člověkem?</h1>
+      <p class="lede">Já taky. Lektor je pořád člověk, ať po telefonu, nebo osobně. A na aplikaci jsem líný. Tak jsem odstranil všechno, co brzdí každého, kdo se chce naučit mluvit.</p>
+      <ul class="prekazky">
+        <li><s>Stud před člověkem</s> <span aria-hidden="true">→</span> <b>Robot vás nehodnotí.</b></li>
+        <li><s>Lektor za 500 Kč jednou týdně</s> <span aria-hidden="true">→</span> <b>Pět minut každý den.</b></li>
+        <li><s>Aplikace, kterou musíte sami otevřít</s> <span aria-hidden="true">→</span> <b>Telefon zazvoní sám.</b></li>
+      </ul>
+      <div class="krok-karta" id="email">
+        <div class="stepline"><span class="pill now">1 · E-mail</span><span class="pill">2 · Číslo a jazyk</span></div>
+        <h2>Hovor zdarma ve 2 krocích</h2>
+        <p>Teď e-mail, na další stránce číslo a jazyk. Bez karty a bez závazku.</p>
+        <div class="slot form" id="mail-slot" data-zdroj="reklama-b" style="min-height:240px">
+          <div>
+            <b>Sem přijde krátký formulář na e-mail</b>
+            Formulář z Tally: jedno pole na e-mail, skryté pole <code>zdroj=reklama</code>
+            a povinné zaškrtávátko souhlasu se zasíláním.
+            <span class="dims">ID se vyplňuje do konfig.js → TALLY_FORM_ID_MAIL.</span>
+          </div>
+        </div>
+        <p class="tiny">E-mail použiju na rozbor hovoru a občas vám napíšu, na co jsem při mluvení cizím jazykem přišel. Odhlásit se jde v každém e-mailu jedním kliknutím – <a href="osobni-udaje-b.html" style="text-decoration:underline">zpracování osobních údajů</a>.</p>
+      </div>
     </div>
-    <div class="phonebox"><svg class="ring" viewBox="0 0 252 470" fill="none" xmlns="http://www.w3.org/2000/svg"
-     role="img" aria-label="Telefon, na kterém zvoní příchozí hovor">
-  <g class="waves">
-    <path class="a1" d="M40 86a52 52 0 0 1 12-30"/>
-    <path class="a2" d="M22 92a70 70 0 0 1 16-42"/>
-    <path class="a1" d="M212 86a52 52 0 0 0-12-30"/>
-    <path class="a2" d="M230 92a70 70 0 0 0-16-42"/>
-  </g>
-  <rect x="46" y="10" width="160" height="450" rx="30" fill="#ffffff" stroke="#1B1229" stroke-width="3.6"/>
-  <rect x="56" y="24" width="140" height="422" rx="22" fill="#FFF6EC"/>
-  <rect x="106" y="34" width="40" height="5" rx="2.5" fill="#D9CFE8"/>
-  <circle cx="126" cy="140" r="40" fill="#7C4DFF" fill-opacity=".10" stroke="#7C4DFF" stroke-width="2.6"/>
-  <g transform="translate(112,126) scale(1.18)">
-    <path d="M3.2 2.6h3.1l1.5 3.9-1.9 1.3a11.2 11.2 0 0 0 5.6 5.6l1.3-1.9 3.9 1.5v3.1a1.5 1.5 0 0 1-1.6 1.5C8 17.1 2.3 11.4 1.7 4.2A1.5 1.5 0 0 1 3.2 2.6Z"
-          fill="none" stroke="#7C4DFF" stroke-width="2.6" stroke-linejoin="round"/>
-  </g>
-  <text x="126" y="214" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10.5"
-        font-weight="700" letter-spacing="1.6" fill="#6E5F86">PŘÍCHOZÍ HOVOR</text>
-  <text x="126" y="248" text-anchor="middle" font-family="'Baloo 2',Nunito,sans-serif" font-size="23"
-        font-weight="600" fill="#1B1229">Zavolám ti</text>
-  <text x="126" y="272" text-anchor="middle" font-family="Nunito,sans-serif" font-size="13"
-        fill="#6E5F86">+420 910 927 989</text>
-  <line x1="76" y1="300" x2="176" y2="300" stroke="#E3DAF2" stroke-width="2.4"/>
-  <text x="126" y="326" text-anchor="middle" font-family="Nunito,sans-serif" font-size="12.5"
-        fill="#6E5F86">pět minut, cizím jazykem</text>
-  <circle cx="94" cy="392" r="25" fill="#FF5C7A" stroke="#1B1229" stroke-width="2.6"/>
-  <g transform="translate(83,381) scale(.95) rotate(133 11.5 11.5)">
-    <path d="M3.2 2.6h3.1l1.5 3.9-1.9 1.3a11.2 11.2 0 0 0 5.6 5.6l1.3-1.9 3.9 1.5v3.1a1.5 1.5 0 0 1-1.6 1.5C8 17.1 2.3 11.4 1.7 4.2A1.5 1.5 0 0 1 3.2 2.6Z"
-          fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linejoin="round"/>
-  </g>
-  <circle cx="158" cy="392" r="25" fill="#2FD8A8" stroke="#1B1229" stroke-width="2.6"/>
-  <g transform="translate(147,381) scale(.95)">
-    <path d="M3.2 2.6h3.1l1.5 3.9-1.9 1.3a11.2 11.2 0 0 0 5.6 5.6l1.3-1.9 3.9 1.5v3.1a1.5 1.5 0 0 1-1.6 1.5C8 17.1 2.3 11.4 1.7 4.2A1.5 1.5 0 0 1 3.2 2.6Z"
-          fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linejoin="round"/>
-  </g>
-</svg></div>
+    <figure class="video-box">
+      <div class="video-embed na-vysku"><video controls playsinline preload="none" poster="video-pribeh.jpg" src="video-pribeh.mp4" title="Proč jsem Zavolám ti postavil"></video></div>
+      <figcaption class="video-pod">Proč jsem to postavil · 4 minuty</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- ===================== PŘÍBĚH (Petrův text doslova) ===================== -->
-<section class="plane" id="pribeh">
+<!-- ===================== REFERENCE (doslova ze zkouska-b.html) ===================== -->
+<section class="plane">
   <div class="wrap">
-    <h2>Jak to vzniklo</h2>
-    <p>Vždycky mě bavily cizí jazyky a chtěl jsem se v nich naučit mluvit. Slovní zásoba pro mě nikdy nebyla problém, ani pochopit gramatiku nebo smysl jazyka. Problém u mě vždycky nastal až v další fázi po slovní zásobě a gramatice. A tou bylo mluvení.</p>
-    <p>Vím, že abych se v cizím jazyce zdokonalil, potřebuji mluvit. Slovní zásoba, poslouchání filmů ani čtení mi potom v reálném životě a v reálné situaci nepomůžou. Musím mluvit. A abych v cizím jazyce mluvil co nejlíp, potřebuji mluvit s někým, kdo ten jazyk naplno ovládá. Úplně nejlepší je mluvit s rodilým mluvčím.</p>
-    <p>Jenže tady u mě nastává obrovský problém a zároveň největší a jediná překážka v tom naučit se mluvit cizím jazykem.</p>
-    <p class="pull">A tou je stud.</p>
-    <p>Stydím se mluvit před jiným člověkem, protože se bojím, že budu za blbce. Že to budu plést, že mi druhý nebude rozumět a že na mě bude koukat jednoduše jako na pitomce. Neříkám to proto, abych přeháněl, ale protože se tak u toho opravdu cítím. Takže někomu zavolat nebo mluvit s někým, kdo žije v zahraničí, je pro mě prostě nepřekonatelný problém.</p>
-    <p>Další možnost je najmout si lektora. Ale to je podobný případ, i tam je stud, i když menší. Navíc se mi nechce platit třeba 500 Kč za hodinu, abych mluvil jen jednou týdně. A mám zkušenost, že v téhle frekvenci mi to nepomůže. Není to kritika lektorů, to ani náhodou. Jejich cenu respektuji, protože je to jejich práce. Ale pro mě tohle prostě taky není cesta.</p>
-    <p>Pak jsou tu ještě aplikace typu Duolingo, které už dnes mají integrovanou umělou inteligenci a můžu s nimi konverzovat. A tam je poslední problém, který má skoro každý z nás: tu aktivitu stejně musím vyvinout já. Já musím vzít do ruky telefon, já musím aplikaci pustit a já musím začít. Dokud telefon do ruky nevezmu, nezačnu.</p>
-    <p>Z vlastní zkušenosti vím, že nejlepších výsledků člověk dosáhne malými kroky, ale pravidelně. Ověřil jsem si to u cvičení. Chtěl jsem mít vyrýsované svaly, ale když jsem chodil do posilovny jednou týdně, nemělo to žádný efekt. Když jsem ale začal cvičit doma pět minut každý den, efekt byl obrovský. A pochopil jsem, že u výuky jazyků je to stejné. Nemusím hodinu sedět u lektora ani hodinu sedět u Duolinga. Stačí tomu každý den věnovat pět minut a výsledek přijde.</p>
-    <p>A tak mě napadlo postavit si v dnešní éře umělé inteligence vlastní aplikaci na výuku jazyků a odstranit všechno, co mi u jiných forem nebo platforem vadí nebo nevyhovuje.</p>
-    <p>Postavil jsem si robota, nebo aplikaci, která tyhle problémy řeší. Zjednodušeně řečeno: každý den mi v nějakém časovém okně zavolá a pět minut si povídám s hlasem umělé inteligence, který se dnes už dost blíží člověku. Povídáme si na nějaké téma a on mě vede sám. Nemusím vymýšlet témata, on se mě ptá a rozvádí je. Když nevím, tak to vysvětlí. Nikdy se mnou nemluví česky, to má striktně zakázáno.</p>
-    <p>Pro mě to má ten efekt, že trénuji poslech cizího jazyka a mluví se mnou rodilý mluvčí. Nestydím se, že něco spletu, protože mě robot nehodnotí. Nemusím přemýšlet a dokopávat se k té aktivitě, protože mi v daném časovém okně agent zavolá sám. Já jen přijmu hovor a pět minut s ním vedu rozhovor.</p>
-    <p>Pár minut po rozhovoru mi do e-mailu přijde vyhodnocení hovoru: co mi šlo, co mi nešlo a opravy, kde jsem se pletl.</p>
-    <p>Po prvním měsíci jsem udělal obrovský pokrok. Najednou dokážu vést i delší souvětí a sám od sebe se pustit do hlubších témat.</p>
-    <p class="small" style="margin-top:22px">— Petr, zakladatel Zavolám ti</p>
+    <h2>Co napsali první lidé po zkušebním hovoru</h2>
+    <div class="recenze">
+      <figure class="rec"><blockquote><p>„Já bych se sama určitě nedonutila a tady by to aplikace udělala za mě … myslím že pro začátečníky je i ideální těch 5 minut za mě prostě skvělý nápad jo a úžasný je i ten rozbor do emailu“</p></blockquote><figcaption class="kdo"><b>Zdenka</b><span>zkušební hovor</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Sice jsem byla nervózní…, ale bylo by to pro mne ideální, protože už se dva roky učím prostřednictvím Duolinga, ale v Itálii během hovoru často zamrznu a automaticky přejdu do angličtiny. Tohle je super…“</p></blockquote><figcaption class="kdo"><b>Tereza H.</b><span>italština</span></figcaption></figure>
+      <figure class="rec"><blockquote><p>„Povídání bylo moc fajn, líbila se mi pohotovost dalších dotazu plynule navazujících na mé odpovědi. Rozbor taky super.“</p></blockquote><figcaption class="kdo"><b>Terka L.</b><span>zkušební hovor</span></figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -493,25 +488,33 @@ html .cl-btn:hover{background:var(--grape);border:var(--line);transform:translat
   </div>
 </section>
 
-<!-- ===================== E-MAIL ZA INFORMACE ===================== -->
-
-<section class="zkouska" id="email">
+<!-- ===================== PŘÍBĚH (Petrův text doslova) ===================== -->
+<section class="plane" id="pribeh">
   <div class="wrap">
-    <h2>Chcete vědět víc?</h2>
-    <p class="lede">Nechte mi e-mail. Hned potom vám ukážu, jak vypadá rozbor po hovoru, co napsali první lidé, kteří to zkusili, a jak si vyzkoušet jeden hovor zdarma. A občas vám napíšu, na co jsem při mluvení cizím jazykem přišel.</p>
-    <div style="margin-top:30px">
-      <div class="slot form" id="mail-slot" data-zdroj="reklama-b" style="min-height:260px">
-        <div>
-          <b>Sem přijde krátký formulář na e-mail</b>
-          Formulář z Tally: jedno pole na e-mail, skryté pole <code>zdroj=reklama</code>
-          a povinné zaškrtávátko souhlasu se zasíláním.
-          <span class="dims">ID se vyplňuje do konfig.js → TALLY_FORM_ID_MAIL.</span>
-        </div>
-      </div>
-    </div>
-    <p class="tiny" style="margin-top:18px">E-mail použiju jen na tyhle zprávy a na rozbor, pokud si zkušební hovor objednáte.
-      Odhlásit se jde v každém e-mailu jedním kliknutím — podrobnosti v <a href="osobni-udaje-b.html" style="text-decoration:underline">dokumentu
-      o zpracování osobních údajů</a>.</p>
+    <h2>Celý příběh</h2>
+    <p>Vždycky mě bavily cizí jazyky a chtěl jsem se v nich naučit mluvit. Slovní zásoba pro mě nikdy nebyla problém, ani pochopit gramatiku nebo smysl jazyka. Problém u mě vždycky nastal až v další fázi po slovní zásobě a gramatice. A tou bylo mluvení.</p>
+    <p>Vím, že abych se v cizím jazyce zdokonalil, potřebuji mluvit. Slovní zásoba, poslouchání filmů ani čtení mi potom v reálném životě a v reálné situaci nepomůžou. Musím mluvit. A abych v cizím jazyce mluvil co nejlíp, potřebuji mluvit s někým, kdo ten jazyk naplno ovládá. Úplně nejlepší je mluvit s rodilým mluvčím.</p>
+    <p>Jenže tady u mě nastává obrovský problém a zároveň největší a jediná překážka v tom naučit se mluvit cizím jazykem.</p>
+    <p class="pull">A tou je stud.</p>
+    <p>Stydím se mluvit před jiným člověkem, protože se bojím, že budu za blbce. Že to budu plést, že mi druhý nebude rozumět a že na mě bude koukat jednoduše jako na pitomce. Neříkám to proto, abych přeháněl, ale protože se tak u toho opravdu cítím. Takže někomu zavolat nebo mluvit s někým, kdo žije v zahraničí, je pro mě prostě nepřekonatelný problém.</p>
+    <p>Další možnost je najmout si lektora. Ale to je podobný případ, i tam je stud, i když menší. Navíc se mi nechce platit třeba 500 Kč za hodinu, abych mluvil jen jednou týdně. A mám zkušenost, že v téhle frekvenci mi to nepomůže. Není to kritika lektorů, to ani náhodou. Jejich cenu respektuji, protože je to jejich práce. Ale pro mě tohle prostě taky není cesta.</p>
+    <p>Pak jsou tu ještě aplikace typu Duolingo, které už dnes mají integrovanou umělou inteligenci a můžu s nimi konverzovat. A tam je poslední problém, který má skoro každý z nás: tu aktivitu stejně musím vyvinout já. Já musím vzít do ruky telefon, já musím aplikaci pustit a já musím začít. Dokud telefon do ruky nevezmu, nezačnu.</p>
+    <p>Z vlastní zkušenosti vím, že nejlepších výsledků člověk dosáhne malými kroky, ale pravidelně. Ověřil jsem si to u cvičení. Chtěl jsem mít vyrýsované svaly, ale když jsem chodil do posilovny jednou týdně, nemělo to žádný efekt. Když jsem ale začal cvičit doma pět minut každý den, efekt byl obrovský. A pochopil jsem, že u výuky jazyků je to stejné. Nemusím hodinu sedět u lektora ani hodinu sedět u Duolinga. Stačí tomu každý den věnovat pět minut a výsledek přijde.</p>
+    <p>A tak mě napadlo postavit si v dnešní éře umělé inteligence vlastní aplikaci na výuku jazyků a odstranit všechno, co mi u jiných forem nebo platforem vadí nebo nevyhovuje.</p>
+    <p>Postavil jsem si robota, nebo aplikaci, která tyhle problémy řeší. Zjednodušeně řečeno: každý den mi v nějakém časovém okně zavolá a pět minut si povídám s hlasem umělé inteligence, který se dnes už dost blíží člověku. Povídáme si na nějaké téma a on mě vede sám. Nemusím vymýšlet témata, on se mě ptá a rozvádí je. Když nevím, tak to vysvětlí. Nikdy se mnou nemluví česky, to má striktně zakázáno.</p>
+    <p>Pro mě to má ten efekt, že trénuji poslech cizího jazyka a mluví se mnou rodilý mluvčí. Nestydím se, že něco spletu, protože mě robot nehodnotí. Nemusím přemýšlet a dokopávat se k té aktivitě, protože mi v daném časovém okně agent zavolá sám. Já jen přijmu hovor a pět minut s ním vedu rozhovor.</p>
+    <p>Pár minut po rozhovoru mi do e-mailu přijde vyhodnocení hovoru: co mi šlo, co mi nešlo a opravy, kde jsem se pletl.</p>
+    <p>Po prvním měsíci jsem udělal obrovský pokrok. Najednou dokážu vést i delší souvětí a sám od sebe se pustit do hlubších témat.</p>
+    <p class="small" style="margin-top:22px">— Petr, zakladatel Zavolám ti</p>
+  </div>
+</section>
+
+<!-- ===================== ZÁVĚREČNÁ VÝZVA ===================== -->
+<section class="zkouska">
+  <div class="wrap">
+    <h2>Vyzkoušejte jeden hovor zdarma</h2>
+    <p class="lede">Krok 1 je e-mail, krok 2 číslo a jazyk. Do dvou pracovních dnů vám zazvoní telefon a pět minut si povídáte. Bez karty a bez závazku.</p>
+    <div class="cta" style="margin-top:26px"><a class="btn block" href="#email">Chci hovor zdarma ↑</a></div>
   </div>
 </section>
 
